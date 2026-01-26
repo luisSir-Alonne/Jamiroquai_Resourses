@@ -467,6 +467,7 @@
     display: none;
     visibility: hidden;
     }
+        
 .toggle{
     position: fixed;
     height: 30px;
@@ -2147,7 +2148,7 @@ li.titleSong{
             <div class="showcase-container">
             <h2>¡Bienvenido!</h2>
             <p>Esta pagina es una edicion especial dedicada a una banda britanica llamada Jamiroquai, que es mi artista musical favorito, aqui encontraras mi ranking de canciones de Jamiroquai segun las que me han gustado de cada uno de sus albums que han sacado y las razones y argumentos que respaldan mi decision de colocar cada una de las canciones en sus respectivos lugares, sin nada mas que decir, ¡Disfruta de la pagina!</p>
-            <a href="#" class="btnH" onclick="mostrarVista('historia')">Leer Mas <i class="fas fa-angle-double-right"></i> </a>
+            <a  class="btnH" onclick="mostrarVista('historia'); showPage('home');">Leer Mas <i class="fas fa-angle-double-right"></i> </a>
             </div>
         </header>
         <!--Estructura del panel de albums-->
@@ -2409,7 +2410,7 @@ li.titleSong{
             <ul class="nav-menu">
                 <li><a href="#" onclick="mostrarVista('home'); showPage('home');">Inicio <i class="fa-solid fa-home"></i></a></li>
                 <li><a href="#" onclick="mostrarVista('reproductorJamiroquai'); showPage('player')">Albums <i class="fa-solid fa-compact-disc"></i></a></li>
-                <li><a href="#" onclick="mostrarVista('pg2')">Historia <i class="fa-solid fa-book"></i></a></li>
+                <li><a href="#" onclick="mostrarVista('historia')">Historia <i class="fa-solid fa-book"></i></a></li>
             </ul>
           
         </nav>
@@ -2803,7 +2804,7 @@ li.titleSong{
         </div>
         
 </div>
-<footer class="footer">
+    <footer class="footer">
         <h4>© Luis Ponce </h4>
     </footer>
 </div>
@@ -2829,8 +2830,18 @@ li.titleSong{
       </script>
       <script>
     function mostrarVista(id){
-        document.querySelectorAll('.vista').forEach(v => v.classList.remove('activa'));
-        document.getElementById(id).classList.add('activa')
+        console.log("Este es el id: ", id)
+        document.querySelectorAll('.vista').forEach(v => {
+            const clases = Array.from(v.classList)
+            const esta = clases.find(n => n === 'activa' ? true: false) 
+            if(esta){
+v.classList.remove('activa')
+
+            }
+            
+        }
+        );
+       document.getElementById(id).classList.add('activa');
     }
 </script>
       <script type="application/json" id="musica-json"> 
@@ -3366,7 +3377,7 @@ li.titleSong{
  * !Quitando clases
 */
 reproductor = document.getElementById('reproductorJamiroquai');
-reproductor.children.classList.remove();
+
 </script>
         <script>
         var dispositivo = detectarDispositivo();
@@ -4403,7 +4414,7 @@ setTranslate(window.innerHeight - 50);
         </script>
         <script>
     function showPage(page) {
-      document.body.className = page; // cambia entre "home" y "player"
+      document.body.className = page;
     }
   </script>
 
@@ -4411,5 +4422,3 @@ setTranslate(window.innerHeight - 50);
 
 </body>
 </html>
-
-
